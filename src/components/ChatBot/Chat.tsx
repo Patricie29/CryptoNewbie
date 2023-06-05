@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion'
 import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
 import ChatMessages from './ChatMessages'

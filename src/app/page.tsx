@@ -1,9 +1,12 @@
-import Image from 'next/image'
+
+import HomePage from '@/components/HomePage'
+
+
 
 export default function Home() {
   return (
-    <main className='absolute inset-0 flex justify-center items-center'>
-      website content
-    </main>
+    <div className="h-full">
+      <HomePage />
+    </div>
   )
 }
