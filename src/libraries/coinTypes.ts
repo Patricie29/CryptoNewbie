@@ -7,6 +7,7 @@ export interface ResponseData {
     market_cap: number
     price_change_percentage_24h: number
     price_change_percentage_7d_in_currency: number
+    price_change_percentage_1h_in_currency: number
     id: string
     market_cap_rank: number
     sparkline_in_7d: { price: number[] };
@@ -23,6 +24,7 @@ export interface CardData {
     marketRank: number
     chartData: number[]
     priceChange7d: number
+    priceChange1h: number
 }
 
 

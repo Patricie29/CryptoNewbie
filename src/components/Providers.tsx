@@ -3,6 +3,7 @@
 import { CoinmarketProvider } from '@/context/cryptoCtx'
 import { MessagesProvider } from '@/context/messages'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { ThemeProvider } from 'next-themes'
 import { FC, ReactNode } from 'react'
 
 interface ProvidersProps {
@@ -13,14 +14,17 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
     const queryClient = new QueryClient()
 
     return <QueryClientProvider client={queryClient}>
-        <CoinmarketProvider>
-            <MessagesProvider>
 
-                {children}
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+            <CoinmarketProvider>
+                <MessagesProvider>
 
-            </MessagesProvider>
+                    {children}
 
-        </CoinmarketProvider>
+                </MessagesProvider>
+            </CoinmarketProvider>
+        </ThemeProvider>
+
     </QueryClientProvider>
 }
 

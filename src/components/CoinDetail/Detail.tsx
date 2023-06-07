@@ -9,7 +9,7 @@ interface DetailProps {
 }
 
 const styles = {
-    title: `text-gray-400 whitespace-nowrap mr-2`,
+    title: `dark:text-gray-400 text-slate-900 font-medium whitespace-nowrap mr-2`,
 }
 
 
@@ -30,8 +30,8 @@ const Detail: FC<DetailProps> = ({ }) => {
 
 
     return (
-        <main className='px-5'>
-            <div className='flex max-w-screen-2xl m-auto pt-10 flex-col justify-between md:flex-row'>
+        <main className='px-5 text-slate-900 dark:text-zinc-300'>
+            <div className='flex max-w-screen-2xl m-auto pt-10 flex-col justify-between lg:flex-row'>
                 <div className='flex flex-col'>
                     <div className='flex items-center mr-[4.5rem]'>
                         {detailCoin?.image.large && (
@@ -47,7 +47,7 @@ const Detail: FC<DetailProps> = ({ }) => {
                             <div className='flex'>
                                 <p className='text-3xl'>{detailCoin?.name}</p>
                                 &nbsp; &nbsp;
-                                <p className='bg-slate-800 flex items-center px-3 rounded-xl'>{detailCoin?.symbol}</p>
+                                <p className='bg-slate-800 text-zinc-300 flex items-center px-3 rounded-xl'>{detailCoin?.symbol}</p>
                             </div>
                         </div>
                     </div>
@@ -58,16 +58,16 @@ const Detail: FC<DetailProps> = ({ }) => {
                     <div className='w-full flex items-start justify-between'>
                         <div>
                             <div className='flex items-start pb-1'>
-                                <p className='text-zinc-400'>
+                                <p className='text-slate-900 dark:text-zinc-400 font-medium'>
                                     {detailCoin?.name} ({detailCoin?.symbol.toLocaleUpperCase()})
                                 </p>
                             </div>
                             <div className='flex items-start'>
-                                <h1 className='text-zinc-200 text-4xl'>{currencyFormat(currentPrice)}</h1>
+                                <h1 className='dark:text-zinc-200 text-slate-900 text-4xl'>{currencyFormat(currentPrice)}</h1>
                                 &nbsp;&nbsp;&nbsp;
-                                <div className={cn('flex items-center px-3 py-1.5 ml-3 rounded-xl', {
-                                    'bg-green-600': priceChange24h > 0,
-                                    'bg-red-600': priceChange24h < 0,
+                                <div className={cn('flex items-center px-3 py-1.5 ml-3 rounded-xl text-zinc-200', {
+                                    'dark:bg-green-600 bg-green-700': priceChange24h > 0,
+                                    'dark:bg-red-600 bg-red-700': priceChange24h < 0,
 
                                 })}>
                                     {priceChange24h > 0 ? (
@@ -86,7 +86,7 @@ const Detail: FC<DetailProps> = ({ }) => {
                     {/* market cap etc */}
                     <div className='flex justify-between flex-col sm:flex-row p-4 mt-[4rem] border-b border-t border-gray-800 '>
                         <div className='flex'>
-                            <div className='pr-2 ml-1 md:ml-10 pl-5 w-full'>
+                            <div className='pr-2 ml-1 md:ml-10 sm:pl-5 w-full'>
                                 <div>
                                     <small className={styles.title}>Market Cap</small>
                                 </div>
@@ -115,7 +115,7 @@ const Detail: FC<DetailProps> = ({ }) => {
                         </div>
                         {/* --------- */}
                         <div className='flex '>
-                            <div className='ml-1 md:ml-10 pl-5 w-full sm:border-l sm:border-gray-800'>
+                            <div className='ml-1 md:ml-8 sm:pl-5 w-full sm:border-l sm:border-gray-800'>
                                 <div className='border-t border-gray-800 sm:border-none'>
                                     <div>
                                         <small className={styles.title}>All time high</small>

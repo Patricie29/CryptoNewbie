@@ -9,14 +9,14 @@ interface PriceChangeProps {
 const PriceChange: FC<PriceChangeProps> = ({ priceChange }) => {
 
     return <div className={cn('flex', {
-        'text-red-500': priceChange < 0,
-        'text-green-400': priceChange > 0
+        'dark:text-red-500 text-red-700': priceChange < 0,
+        'dark:text-green-400 text-green-700': priceChange > 0
     })}>
 
         {priceChange < 0 ? <TrendingDown className='h-4 w-4' /> : <TrendingUp className='h-4 w-4' />}
 
         <span className='pl-4'>
-            {priceChange.toLocaleString()}%
+            {priceChange.toFixed(2)}%
         </span>
     </div>;
 };

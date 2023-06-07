@@ -1,4 +1,5 @@
 import { CardData, ResponseData, ResponseDetailChartData, ResponseDetailsData, ResponseTrendingData, TrendingData } from "@/libraries/coinTypes";
+import { notFound } from "next/navigation";
 import { createContext, useState, ReactNode } from "react";
 
 
@@ -87,7 +88,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             // get only data we need
             const newData = resData.map((data: ResponseData) => {
                 // here we deconstruct from the recieved data what we actual want to display
-                const { symbol, id, name, image, current_price, market_cap, price_change_percentage_24h, market_cap_rank, sparkline_in_7d: { price }, price_change_percentage_7d_in_currency } = data;
+                const { symbol, id, name, image, current_price, market_cap, price_change_percentage_24h, market_cap_rank, sparkline_in_7d: { price }, price_change_percentage_7d_in_currency, price_change_percentage_1h_in_currency } = data;
                 return {
                     symbol,
                     id,
@@ -98,7 +99,8 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
                     currentPrice: current_price,
                     marketRank: market_cap_rank,
                     priceChange: price_change_percentage_24h,
-                    priceChange7d: price_change_percentage_7d_in_currency
+                    priceChange7d: price_change_percentage_7d_in_currency,
+                    priceChange1h: price_change_percentage_1h_in_currency
                 }
             })
 
@@ -106,8 +108,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             return newData
 
         } catch (error) {
-            console.log('Error:', error);
-            return []
+            throw new Error('Something went wrong')
         } finally {
             setIsLoading(false)
         }
@@ -118,19 +119,18 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getCoinsDetails = async (coinId: string) => {
 
         try {
+            setIsLoading(true)
             const res = await fetch(`/api/crypto/info/${coinId}`);
             const resData: ResponseDetailsData = await res.json();
 
             setDetailCoin(resData)
-
+            setIsLoading(false)
             return resData
 
         } catch (e) {
-
-            console.log(e)
-
+            notFound()
         } finally {
-
+            setIsLoading(false)
         }
     }
 
@@ -151,11 +151,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             return data
 
         } catch (e) {
-
-            console.log(e)
-
-        } finally {
-
+            throw new Error('Something went wrong')
         }
     }
 
@@ -164,7 +160,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
         try {
             const rawResponse = await fetch(`api/crypto/trending`);
             const resData: ResponseTrendingData = await rawResponse.json();
-            console.log('RES DATA', resData);
 
             const data = resData.coins.map((coinData) => {
                 const { item: { market_cap_rank, name, large, slug } } = coinData;
@@ -177,7 +172,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             });
             const top5Coins = data.slice(0, 5); // Get the first 5 coins
 
-
             setTrendingData(top5Coins);
             return top5Coins;
 
@@ -185,8 +179,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             throw new Error('Something went wrong!')
         }
     }
-
-
 
 
 

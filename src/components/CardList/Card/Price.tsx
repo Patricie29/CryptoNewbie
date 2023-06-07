@@ -3,10 +3,9 @@ import { FC } from 'react'
 
 interface PriceProps {
     currentPrice: number
-    priceChange: number
 }
 
-const Price: FC<PriceProps> = ({ currentPrice, priceChange }) => {
+const Price: FC<PriceProps> = ({ currentPrice }) => {
 
     return <div className='flex flex-col'>
         <div> {currencyFormat(currentPrice)}</div>

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 0, 0, 25;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -15,22 +15,14 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --dark-background-color: 0, 0, 25;
+    --light-background-color: 128, 128, 135;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-     rgb(0, 0, 41)
-    )
-    rgb(0, 0, 41); */
-  background-color: rgb(0, 0, 25);
-  ;
-  font-family: 'Monomaniac One', sans-serif;
   font-family: 'Roboto', sans-serif;
-
 }
 
 .scrollbar-w-2::-webkit-scrollbar {
@@ -53,7 +45,6 @@ body {
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
   border-radius: 0.25rem;
 }
-
 
 
 p {

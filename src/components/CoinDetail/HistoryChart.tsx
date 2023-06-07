@@ -82,13 +82,13 @@ const HistoryChart: FC<HistoryChartProps> = ({ coinId, detailCoin }) => {
         ]
     }
 
-    return <div className="grid grid-cols-1 md:grid-cols-2 gap-3 dark:bg-slate-900 bg-gray-400 mt-10 py-10 px-3">
+    return <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 dark:bg-slate-900 bg-slate-800 mt-10 py-10 px-3">
         <div>
             <Line options={options} data={data} className="dark:text-white" />
         </div>
         <div>
-            <div className="bg-gray-100 dark:bg-gray-800 p-4">
-                <h2 className="text-gray-900 dark:text-white text-xl font-bold mb-4">Description</h2>
+            <div className="bg-[#CDCDCD] dark:bg-gray-800 p-4 rounded-lg">
+                <h2 className="text-gray-900 dark:text-zinc-200 text-xl font-bold mb-4">Description</h2>
                 <p className="mt-6 text-gray-700 dark:text-gray-300 text-sm">
                     {detailCoin.description.en.length === 0 ? (
                         <span>We apologize for the inconvenience. The description for this coin is currently unavailable. </span>

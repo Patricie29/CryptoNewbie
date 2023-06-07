@@ -11,6 +11,8 @@ interface ChartProps {
 const DynamicReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 const Chart: FC<ChartProps> = ({ chartData, priceChange7d }) => {
+
+
     const [chartOptions, setChartOptions] = useState<ApexOptions>({
         series: [
             {
@@ -28,7 +30,7 @@ const Chart: FC<ChartProps> = ({ chartData, priceChange7d }) => {
             if (priceChange7d <= 0) {
                 return '#FF2400'
             } else {
-                return '#39FF14'
+                return '#1cbd00'
             }
         }],
     })

@@ -32,11 +32,7 @@ const Page = ({ }) => {
             getChartData(id);
             setCoinId(id)
         }
-    }
 
-
-    if (detailCoin === null) {
-        return <div>Loading...</div>;
     }
 
 

@@ -9,14 +9,14 @@ interface PriceChange7dProps {
 const PriceChange7d: FC<PriceChange7dProps> = ({ priceChange7d }) => {
 
     return <div className={cn('flex', {
-        'text-red-500': priceChange7d < 0,
-        'text-green-400': priceChange7d > 0
+        'dark:text-red-500 text-red-700': priceChange7d < 0,
+        'dark:text-green-400 text-green-700': priceChange7d > 0
     })}>
 
         {priceChange7d < 0 ? <TrendingDown className='h-4 w-4' /> : <TrendingUp className='h-4 w-4' />}
 
         <span className='pl-4'>
-            {priceChange7d.toLocaleString()}%
+            {priceChange7d.toFixed(2)}%
         </span>
     </div>;
 };

@@ -18,8 +18,7 @@ export async function GET(request: Request) {
 
         return response;
     } catch (error) {
-        // POTREBUJEME PRIDAT ERROR NOTIFICATION NEBO ERROR PAGE
-        console.log("error server side", error);
+
         return new Response("Invalid request.", { status: 400 });
     }
 }
