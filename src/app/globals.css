@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Lexend&family=Unbounded&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -51,4 +52,15 @@ p {
   font-family: 'Roboto', sans-serif;
   font-size: medium;
   font-weight: 300;
+}
+
+
+.neon-writing h1 {
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 60px;
+  text-shadow:
+    0 0 10px #00d9ff,
+    0 0 20px #00d9ff,
+    0 0 40px #00d9ff;
 }

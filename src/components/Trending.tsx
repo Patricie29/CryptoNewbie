@@ -20,7 +20,7 @@ const Trending: FC<TrendingProps> = ({ }) => {
 
     return <>
         {trendingData.length ? (
-            <div className="w-full max-w-md p-8 border rounded-lg shadowbg-gray-800 border-gray-700 bg-gray-800 mb-5 md:mb-10 lg:ml-10">
+            <div className="w-full max-w-md p-8 border rounded-lg shadowbg-gray-800 border-gray-700 bg-gray-800 mb-5 md:mb-10 lg:ml-10 mx-auto">
                 <div className="flex items-center justify-between">
                     <h5 className="text-xl font-bold leading-none text-white mb-4 border-b-4 border-b-blue-600">Trending Cryptocurrency</h5>
                 </div>

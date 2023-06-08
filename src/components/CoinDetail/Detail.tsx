@@ -30,34 +30,30 @@ const Detail: FC<DetailProps> = ({ }) => {
 
 
     return (
-        <main className='px-5 text-slate-900 dark:text-zinc-300'>
+        <main className='max-w-screen-xl mx-auto text-slate-900 dark:text-zinc-300'>
             <div className='flex max-w-screen-2xl m-auto pt-10 flex-col justify-between lg:flex-row'>
                 <div className='flex flex-col'>
-                    <div className='flex items-center mr-[4.5rem]'>
-                        {detailCoin?.image.large && (
-                            <Image
-                                src={detailCoin.image.large}
-                                height={55}
-                                width={55}
-                                alt={`${detailCoin.name} logo`}
-                                className='items-center justify-center h-55 w-55 mr-4'
-                            />
-                        )}
-                        <div>
-                            <div className='flex'>
-                                <p className='text-3xl'>{detailCoin?.name}</p>
-                                &nbsp; &nbsp;
-                                <p className='bg-slate-800 text-zinc-300 flex items-center px-3 rounded-xl'>{detailCoin?.symbol}</p>
+                    <div className='flex flex-col sm:flex-row justify-between'>
+                        <div className='flex items-center mr-[4.5rem]'>
+                            {detailCoin?.image.large && (
+                                <Image
+                                    src={detailCoin.image.large}
+                                    height={55}
+                                    width={55}
+                                    alt={`${detailCoin.name} logo`}
+                                    className='items-center justify-center h-55 w-55 mr-4'
+                                />
+                            )}
+                            <div>
+                                <div className='flex'>
+                                    <p className='text-3xl'>{detailCoin?.name}</p>
+                                    &nbsp; &nbsp;
+                                    <p className='bg-slate-800 text-zinc-300 flex items-center px-3 rounded-xl'>{detailCoin?.symbol}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-
-                <div className='mt-3 md:mt-0'>
-                    <div className='w-full flex items-start justify-between'>
-                        <div>
-                            <div className='flex items-start pb-1'>
+                        <div className='pl-5 pt-5 sm:pl-0 sm:pt-0'>
+                            <div className='flex pb-1'>
                                 <p className='text-slate-900 dark:text-zinc-400 font-medium'>
                                     {detailCoin?.name} ({detailCoin?.symbol.toLocaleUpperCase()})
                                 </p>
@@ -82,6 +78,7 @@ const Detail: FC<DetailProps> = ({ }) => {
                             </div>
                         </div>
                     </div>
+
 
                     {/* market cap etc */}
                     <div className='flex justify-between flex-col sm:flex-row p-4 mt-[4rem] border-b border-t border-gray-800 '>
@@ -154,13 +151,18 @@ const Detail: FC<DetailProps> = ({ }) => {
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 
+                <div className='flex mt-5 lg:mt-0 mx-auto lg:mx-0'>
+                    <div className='flex items-center justify-center'>
+                        <Image src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" width={300} height={300} className='rounded-xl' />
+                    </div>
+                </div>
             </div>
         </main >
     )
+
 }
 
 export default Detail

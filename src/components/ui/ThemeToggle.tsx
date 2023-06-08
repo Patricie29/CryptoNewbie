@@ -16,9 +16,9 @@ const ThemeToggle: FC<ThemeToggleProps> = ({ }) => {
         <div className='h-8 w-auto'>
             <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className='group '>
                 {theme === 'light' ? (
-                    <Moon className='h-7 w-7 rotate-0 scale-100 transition-all hover:text-indigo-500 :group-hover:text-indigo-500 dark:-rotate-90  text-indigo-600' />
+                    <Moon className='h-8 w-8 rotate-0 scale-100 transition-all hover:text-indigo-500 :group-hover:text-indigo-500 dark:-rotate-90  text-indigo-600' />
                 ) : (
-                    <Sun className='h-7 w-7 rotate-0 scale-100 transition-all dark:group-hover:text-indigo-500 hover:text-indigo-500 dark:-rotate-90  text-indigo-600' />
+                    <Sun className='h-8 w-8 rotate-0 scale-100 transition-all dark:group-hover:text-indigo-500 hover:text-indigo-500 dark:-rotate-90  text-indigo-600' />
                 )}
             </button>
         </div >

@@ -32,6 +32,11 @@ module.exports = {
         'dark-background': 'rgb(0, 0, 25)',
         'light-background': 'rgb(205, 205, 205)',
       },
+      fontFamily: {
+        'roboto': ['Roboto', 'sans-serif'],
+        'unbounded': ['Unbounded', 'cursive']
+      },
+
     },
   },
   plugins: [require('@tailwindcss/forms')],
