@@ -4,7 +4,6 @@ export async function GET(request: Request) {
         const response = await fetch(`https://api.coingecko.com/api/v3/search/trending`,
             {
                 method: "GET",
-                cache: 'no-store',
                 headers: {
                     'accept': "application/json",
                 },
