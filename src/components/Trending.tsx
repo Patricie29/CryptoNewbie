@@ -6,17 +6,14 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 
-interface TrendingProps {
 
-}
-
-const Trending: FC<TrendingProps> = ({ }) => {
+const Trending: FC = () => {
 
     const { trendingData, getTrendingData } = useContext(CoinmarketContext)
 
     useEffect(() => {
         getTrendingData()
-    }, [getTrendingData])
+    }, [])
 
     return <>
         {trendingData.length ? (
