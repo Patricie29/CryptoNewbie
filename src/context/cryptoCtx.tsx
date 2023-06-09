@@ -158,7 +158,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     // getting top 5 trending coins
     const getTrendingData = async () => {
         try {
-            const rawResponse = await fetch(`api/crypto/trending`);
+            const rawResponse = await fetch(`/api/crypto/trending`);
             const resData: ResponseTrendingData = await rawResponse.json();
 
             const data = resData.coins.map((coinData) => {
