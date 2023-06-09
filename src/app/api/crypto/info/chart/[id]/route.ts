@@ -9,7 +9,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
         //this is how we connect with coin gecko API and get back the response which we parse in Card.tsx
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365&interval=monthly`, {
             method: 'GET',
-            next: { revalidate: 60 },
+            cache: 'no-store',
             headers: {
                 'accept': 'application/json'
             }
