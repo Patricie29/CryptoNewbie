@@ -3,10 +3,9 @@ export async function GET(request: Request) {
         //this is how we connect with coin gecko API and get back the response which we parse in Card.tsx
         const response = await fetch(`https://api.coingecko.com/api/v3/search/trending`,
             {
-                method: "GET",
                 headers: {
-                    'accept': "application/json",
-                },
+                    'accept': 'application/json'
+                }
             }
         );
 

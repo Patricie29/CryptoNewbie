@@ -81,11 +81,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getCoins = async (page: number) => {
         try {
             setIsLoading(true)
-            const res = await fetch(`/api/crypto/${page}`, {
-                headers: {
-                    'Accept-Encoding': 'gzip',
-                },
-            });
+            const res = await fetch(`/api/crypto/${page}`);
             const resData: ResponseData[] = await res.json();
 
             // get only data we need
@@ -160,11 +156,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     // getting top 5 trending coins
     const getTrendingData = async () => {
         try {
-            const rawResponse = await fetch(`/api/crypto/trending`, {
-                headers: {
-                    'Accept-Encoding': 'gzip',
-                },
-            });
+            const rawResponse = await fetch(`/api/crypto/trending`);
             const resData: ResponseTrendingData = await rawResponse.json();
 
             const data = resData.coins.map((coinData) => {
