@@ -16,7 +16,7 @@ const Trending: FC<TrendingProps> = ({ }) => {
 
     useEffect(() => {
         getTrendingData()
-    }, [])
+    }, [getTrendingData])
 
     return <>
         {trendingData.length ? (
