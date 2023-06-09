@@ -5,10 +5,12 @@ import Chat from '@/components/ChatBot/Chat'
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 
+import '@rainbow-me/rainbowkit/styles.css';
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'CryptoNewbie ',
+  title: 'CryptoNewbie',
   description: 'Your go-to crypto website for beginners.',
 }
 
@@ -20,16 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* since this is a server side component we have to create a client side component for the Provider-from react-query and with that we can wrap the body here and like that we will have access to that everywhere in the app */}
-      <Providers>
-        <body className={`${inter.className} bg-light-background dark:bg-dark-background`}>
-          {/* <!--Nav--> */}
+      <body className={`${inter.className} bg-light-background dark:bg-dark-background`}>
+        <Providers>
+
           <NavBar />
           <Chat />
           {children}
-
           <Footer />
-        </body>
-      </Providers>
+
+        </Providers>
+      </body>
+
     </html >
   )
 }

@@ -36,6 +36,11 @@ module.exports = {
         'roboto': ['Roboto', 'sans-serif'],
         'unbounded': ['Unbounded', 'cursive']
       },
+      boxShadow: {
+        'lg': '0 0 8px 1px rgba(0, 217, 255)',
+        'md': '0 0 20px 0 rgba(0, 217, 255)',
+        'xl': '0 0 25px 1px rgba(14, 165, 233)',
+      }
 
     },
   },

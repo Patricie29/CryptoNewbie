@@ -4,6 +4,8 @@ import { useState } from 'react';
 import ThemeToggle from './ui/ThemeToggle';
 import Image from 'next/image';
 import CryptoNewbieNoBg from '../images/CryptoNewbieNoBg.png'
+import { Connect } from './Connect';
+
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,7 +59,7 @@ const NavBar = () => {
                         <li>
                             <Link
                                 href="/currencies/guide"
-                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border-0 hover:text-white md:hover:bg-blue-800 mr-1"
+                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border md:border-transparent md:hover:border-solid hover:text-white mr-1 hover:md:shadow-lg"
                             >
 
                                 Beginner’s Guide
@@ -67,18 +69,14 @@ const NavBar = () => {
                         <li>
                             <Link
                                 href="/currencies/wallets"
-                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border-0 hover:text-white md:hover:bg-blue-800 mr-1">
+                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border md:border-transparent md:hover:border-solid hover:text-white mr-1 hover:md:shadow-lg">
                                 Hardware Wallets
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                href="/currencies/wallets"
-                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border-0 hover:text-white md:hover:bg-blue-800 mr-1">
-                                Connect Wallet
-                            </Link>
+                            <Connect />
                         </li>
-                        <li className='hidden md:block'>
+                        <li className='hidden md:block pl-4'>
                             <ThemeToggle />
                         </li>
 

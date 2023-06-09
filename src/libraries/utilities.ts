@@ -18,3 +18,6 @@ export const numbersFormat = (num: number) => {
     const formattedNum = num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,');
     return formattedNum
 }
+
+
+
