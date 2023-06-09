@@ -137,7 +137,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getChartData = async (id: string) => {
 
         try {
-            const res = await fetch(`https://www.cryptonewbie.net/api/crypto/info/chart/${id}`);
+            const res = await fetch(`/api/crypto/info/chart/${id}`);
             const resData = await res.json();
 
             const data: ResponseDetailChartData[] = resData.prices.map((oneValue: any) => ({
@@ -156,7 +156,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     // getting top 5 trending coins
     const getTrendingData = async () => {
         try {
-            const rawResponse = await fetch(`https://www.cryptonewbie.net/api/crypto/trending`);
+            const rawResponse = await fetch(`/api/crypto/trending`);
             const resData: ResponseTrendingData = await rawResponse.json();
 
             const data = resData.coins.map((coinData) => {

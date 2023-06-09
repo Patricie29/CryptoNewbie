@@ -23,7 +23,6 @@ const NavBar = () => {
 
                 <div className='md:hidden flex'>
                     <span className='mt-1'>
-
                         <ThemeToggle />
                     </span>
                     <button
