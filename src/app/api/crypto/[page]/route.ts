@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: { page: number
             method: 'GET',
             next: { revalidate: 60 },
             headers: {
-                'accept': 'application/json'
+                'Content-Type': 'application/json'
             }
         })
 
