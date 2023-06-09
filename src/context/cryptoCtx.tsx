@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { createContext, useState, ReactNode } from "react";
 
 
-
 export const CoinmarketContext = createContext<{
     coins: CardData[]
     setCoins: React.Dispatch<React.SetStateAction<CardData[]>>
@@ -114,7 +113,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
         }
     }
 
-
     // getting details for eahc of our coins - we had to use different route to get information about each coin
     const getCoinsDetails = async (coinId: string) => {
 
@@ -179,7 +177,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             throw new Error('Something went wrong!')
         }
     }
-
 
 
     return <CoinmarketContext.Provider value={{
