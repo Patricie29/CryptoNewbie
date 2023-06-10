@@ -81,7 +81,12 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getCoins = async (page: number) => {
         try {
             setIsLoading(true)
-            const res = await fetch(`/api/crypto/${page}`);
+            const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en`, {
+                method: 'GET',
+                headers: {
+                    'accept': 'application/json'
+                }
+            })
             const resData: ResponseData[] = await res.json();
 
             // get only data we need
@@ -104,10 +109,14 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             })
 
             setCoins((prevCoins) => [...prevCoins, ...newData])
+
+            if (!res.ok) {
+                throw new Error(`FAILED ${res.status}`)
+            }
             return newData
 
         } catch (error) {
-            throw new Error('Something went wrong')
+            return new Response('Invalid request.', { status: 400 })
         } finally {
             setIsLoading(false)
         }
@@ -118,8 +127,17 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
 
         try {
             setIsLoading(true)
-            const res = await fetch(`/api/crypto/info/${coinId}`);
+            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&sparkline=true`, {
+                method: 'GET',
+                headers: {
+                    'accept': 'application/json'
+                }
+            })
             const resData: ResponseDetailsData = await res.json();
+
+            if (!res.ok) {
+                throw new Error(`FAILED ${res.status}`)
+            }
 
             setDetailCoin(resData)
             setIsLoading(false)
@@ -137,12 +155,24 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getChartData = async (id: string) => {
 
         try {
-            const res = await fetch(`/api/crypto/info/chart/${id}`);
-            const resData = await res.json();
+            const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365&interval=monthly`, {
+                method: 'GET',
+                headers: {
+                    'accept': 'application/json'
+                }
+            })
+
+            const resData = await response.json();
+
+            if (!response.ok) {
+                throw new Error(`FAILED ${response.status}`)
+            }
 
             const data: ResponseDetailChartData[] = resData.prices.map((oneValue: any) => ({
                 x: oneValue[0], y: oneValue[1].toFixed(2)
             }))
+
+
 
             setChartData(data)
 
@@ -156,8 +186,18 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     // getting top 5 trending coins
     const getTrendingData = async () => {
         try {
-            const rawResponse = await fetch(`/api/crypto/trending`);
-            const resData: ResponseTrendingData = await rawResponse.json();
+            const response = await fetch('https://api.coingecko.com/api/v3/search/trending',
+                {
+                    headers: {
+                        'accept': 'application/json'
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`FAILED ${response.status}`);
+            }
+            const resData: ResponseTrendingData = await response.json();
 
             const data = resData.coins.map((coinData) => {
                 const { item: { market_cap_rank, name, large, slug } } = coinData;
@@ -170,11 +210,12 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             });
             const top5Coins = data.slice(0, 5); // Get the first 5 coins
 
+
             setTrendingData(top5Coins);
             return top5Coins;
 
         } catch (error) {
-            console.log(error, 'trending error')
+            throw new Error('Something went wrong')
         }
     }
 
