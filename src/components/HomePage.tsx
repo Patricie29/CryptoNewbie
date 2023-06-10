@@ -24,6 +24,9 @@ const HomePage: FC<HomeProps> = ({ }) => {
             </div>
             <Trending />
         </div>
+        <p className="text-right pb-1 pr-2 text-xs text-gray-500 dark:text-gray-400">
+            Data from <a href="https://www.coingecko.com/" target='_blank'>CoinGecko API</a>
+        </p>
 
         {/* Here we render our card list */}
         <CardList className='bg-zinc-500' />

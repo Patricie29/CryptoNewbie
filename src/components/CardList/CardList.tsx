@@ -57,9 +57,6 @@ const CardList: FC<CardListProps> = ({ className, ...props }) => {
 
 
     return <div {...props} className={cn('text-slate-900 dark:text-zinc-200 font-medium dark:font-light overflow-x-auto', className)}>
-        <span className="absolute top-0 right-0 p-2 text-xs text-gray-500 dark:text-gray-400">
-            Data from CoinGecko
-        </span>
         <table className="min-w-full divide-y bg-[#CDCDCD] dark:bg-slate-900">
             {/* ERROR MESSAGE */}
             {error && <div className='flex absolute inset-x-0 mx-auto items-center justify-center'>
