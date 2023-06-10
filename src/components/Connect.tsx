@@ -1,5 +1,8 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Image from 'next/image';
+
+
+
 export const Connect = () => {
     return (
         <ConnectButton.Custom>

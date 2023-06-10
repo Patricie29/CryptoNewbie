@@ -7,7 +7,6 @@ import { MessageArraySchema } from "@/libraries/validator/message"
 export async function POST(req: Request) {
 
     // so first we need to know what message has the user typed
-
     const { messages } = await req.json()
 
     // now we need to validate whatever the user wrote via our schema
@@ -19,15 +18,14 @@ export async function POST(req: Request) {
 
     }))
 
-    // unshift is like push, but it put the item at the beggining of the array, not the end like push
     readyToGoMessages.unshift({
         role: 'system',
         content: chatbotPrompt
     })
 
     // this is what we're gonna send to the open ai api
-    // all the info we get from open ai documentation
     //OpenAIStreamPayload is our typescript 'schema' that we wrote from this payload
+    // here I set ChatGPT properties
     const payload: OpenAIStreamPayload = {
         model: 'gpt-3.5-turbo', //or you can use chat gpt 4 if you have access
         messages: readyToGoMessages,  //we are sending the already ready and unshifted messages

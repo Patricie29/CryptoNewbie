@@ -18,7 +18,7 @@ const HomePage: FC<HomeProps> = ({ }) => {
                 </h1>
                 <span className='text-center lg:text-base md:pl-5 md:mt-5 mb-14 lg:mb-10'>Discover - Learn - Secure</span>
 
-                <p className="leading-normal sm:ml-5 md:text-xl mb-4 px-10 sm:px-0 sm:mb-8 text-left font-unbounded">
+                <p className="leading-normal sm:ml-5 md:text-xl mb-4 px-10 sm:px-0 sm:mb-8 text-center lg:text-left font-unbounded">
                     <span>Explore beginner-friendly guides,<br /> expert hardware wallet advice, and real-time market prices.</span>
                 </p>
             </div>

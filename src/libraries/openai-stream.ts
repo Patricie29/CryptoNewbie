@@ -10,7 +10,6 @@ export interface ChatGPTMessage {
 }
 
 
-//OpenAIStreamPayload is our typescript 'schema' that we wrote from this payload
 export interface OpenAIStreamPayload {
     model: string,
     messages: ChatGPTMessage[],
