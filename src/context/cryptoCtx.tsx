@@ -174,7 +174,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             return top5Coins;
 
         } catch (error) {
-            throw new Error('Something went wrong!')
+            console.log(error, 'trending error')
         }
     }
 
