@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='dark'>
       {/* since this is a server side component we have to create a client side component for the Provider-from react-query and with that we can wrap the body here and like that we will have access to that everywhere in the app */}
-      <body className='bg-light-background dark:bg-dark-background dark'>
+      <body className='bg-light-background dark:bg-dark-background'>
         <Providers>
 
           <NavBar />

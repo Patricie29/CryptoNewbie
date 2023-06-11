@@ -10,7 +10,7 @@ interface HomeProps {
 const HomePage: FC<HomeProps> = ({ }) => {
     return <>
         {/* <!--Main--> */}
-        <div className="container pt-10 md:pt-10 pb-10 mx-auto flex flex-wrap lg:flex-nowrap flex-col md:flex-row items-center justify-between text-slate-900 dark:text-zinc-300">
+        <div className="container pt-10 md:pt-10 pb-10 mx-auto flex flex-wrap lg:flex-nowrap flex-col md:flex-row items-center justify-between text-zinc-300">
             {/* <!--Left side--> */}
             <div className="flex text-[#000450] dark:text-[#fff] mt-5 lg:mt-0 flex-col lg:w-3/5 justify-center lg:items-start overflow-y-hidden neon-writing font-unbounded">
                 <h1 className="text-[25px] sm:text-[35px] md:text-[45px] lg:text-[37px] text-center pt-3 lg:pt-0 mb-10 sm:pl-4 opacity-90 lg:text-left">
