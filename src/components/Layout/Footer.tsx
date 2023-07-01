@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import cnLogo from '../images/CNlogoMini.png'
+import cnLogo from '../../images/CNlogoMini.png'
 
 
 const Footer = ({ }) => {

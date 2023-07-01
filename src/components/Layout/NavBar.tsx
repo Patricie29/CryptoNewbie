@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link';
 import { useState } from 'react';
-import ThemeToggle from './ui/ThemeToggle';
+import ThemeToggle from '../ui/ThemeToggle';
 import Image from 'next/image';
-import CryptoNewbieNoBg from '../images/CryptoNewbieNoBg.png'
+import CryptoNewbieNoBg from '../../images/CryptoNewbieNoBg.png'
 import { Connect } from './Connect';
 
 
@@ -55,6 +55,15 @@ const NavBar = () => {
                     id="navbar-solid-bg"
                 >
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-800 md:flex-row md:space-x-1 md:mt-0 md:border-0 md:bg-transparent md:dark:bg-transparent border-gray-700">
+                        <li>
+                            <Link
+                                href="/currencies/swap"
+                                className="block py-2 px-4 font-medium text-sm text-zinc-400 rounded-lg md:border md:border-transparent md:hover:border-solid hover:text-white mr-1 hover:md:shadow-lg"
+                            >
+
+                                Swap
+                            </Link>
+                        </li>
                         <li>
                             <Link
                                 href="/currencies/guide"

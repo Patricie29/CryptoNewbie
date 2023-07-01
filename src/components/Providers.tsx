@@ -4,6 +4,7 @@ import { CoinmarketProvider } from '@/context/cryptoCtx'
 import { MessagesProvider } from '@/context/messages'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
+import Moralis from "moralis";
 import React, { FC, ReactNode } from 'react'
 import {
     RainbowKitProvider,
@@ -16,9 +17,11 @@ import {
     trustWallet,
     ledgerWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum, goerli, bsc, bscTestnet } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
+
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [
@@ -63,6 +66,10 @@ const wagmiConfig = createConfig({
     publicClient,
     webSocketPublicClient,
 });
+
+
+Moralis.start({ apiKey: process.env.NEXT_PUBLIC_API_KEY });
+
 interface ProvidersProps {
     children: ReactNode
 }
@@ -71,6 +78,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
     const queryClient = new QueryClient()
     const [mounted, setMounted] = React.useState(false);
     React.useEffect(() => setMounted(true), []);
+
 
     return <QueryClientProvider client={queryClient}>
         <WagmiConfig config={wagmiConfig}>

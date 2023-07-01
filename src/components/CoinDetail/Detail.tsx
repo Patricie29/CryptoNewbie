@@ -3,15 +3,14 @@ import { cn, currencyFormat, numbersFormat } from '@/libraries/utilities'
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import Image from 'next/image'
 import { FC, useContext } from 'react'
+import Swap from '../Layout/Swap'
 
 interface DetailProps {
-
 }
 
 const styles = {
     title: `dark:text-gray-400 text-slate-900 font-medium whitespace-nowrap mr-2`,
 }
-
 
 const Detail: FC<DetailProps> = ({ }) => {
 
@@ -157,6 +156,7 @@ const Detail: FC<DetailProps> = ({ }) => {
                 <div className='flex mt-5 lg:mt-0 mx-auto lg:mx-0'>
                     <div className='flex items-center justify-center'>
                         <Image src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" width={300} height={300} className='rounded-xl' />
+
                     </div>
                 </div>
             </div>

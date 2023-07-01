@@ -32,9 +32,7 @@ const Page = ({ }) => {
             getChartData(id);
             setCoinId(id)
         }
-
     }
-
 
     return <>
         <section className='mt-10'>
