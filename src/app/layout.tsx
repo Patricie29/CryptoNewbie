@@ -5,6 +5,7 @@ import NavBar from '@/components/Layout/NavBar'
 import Footer from '@/components/Layout/Footer'
 
 import '@rainbow-me/rainbowkit/styles.css';
+import { Analytics } from '@vercel/analytics/react';
 
 
 export const metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
           <Chat />
           {children}
           <Footer />
-
+          <Analytics />
         </Providers>
       </body>
 
