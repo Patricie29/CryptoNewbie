@@ -284,7 +284,7 @@ const Swap: FC<SwapProps> = ({ }) => {
                         value={tokenTwoAmount}
                         disabled={true} />
 
-                    <div className="bg-[#3a4157] w-6 h-6 flex items-center justify-center rounded-md absolute top-[86px] left-[200px] text-[#5f6783] border-[3px] border-slate-900 text-sm transition duration-300 hover:cursor-pointer hover:text-white" onClick={switchTokens}>
+                    <div className="bg-[#3a4157] w-6 h-6 flex items-center justify-center rounded-md absolute top-[86px] left-[147px] sm:left-[200px] text-[#5f6783] border-[3px] border-slate-900 text-sm transition duration-300 hover:cursor-pointer hover:text-white" onClick={switchTokens}>
                         <ArrowDown />
                     </div>
 
