@@ -44,8 +44,8 @@ const Swap: FC<SwapProps> = ({ }) => {
     const { data, sendTransaction } = useSendTransaction({
         account: address,
         to: String(txDetails.to),
-        // data: txDetails.data as unknown as `0x${string}`,
-        // value: BigInt(`0x${txDetails.value}`),
+        data: txDetails.data as unknown as `0x${string}`,
+        value: BigInt(`0x${txDetails.value}`),
     });
 
     // with this we can display to the user the transaction is in the process
