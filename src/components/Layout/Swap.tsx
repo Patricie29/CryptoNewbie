@@ -9,23 +9,25 @@ import { useSendTransaction, useWaitForTransaction, useAccount, usePrepareSendTr
 import Image from 'next/image';
 import { ArrowDown, ChevronDown, Settings } from 'lucide-react';
 import Moralis from 'moralis';
+import { TokenData } from '@/libraries/tokenTypes';
 
 
 interface SwapProps {
 
 }
 
+
+
 const Swap: FC<SwapProps> = ({ }) => {
 
     const [slippage, setSlippage] = useState<number>(2.5)
     // useMessage hook from antd to display our pending transaction message
     const [messageApi, contextHolder] = message.useMessage();
-    // what should this be instead of any ??????????/
     const [tokenOneAmount, setTokenOneAmount] = useState<any>(null);
     const [tokenTwoAmount, setTokenTwoAmount] = useState<any>(null);
     // our token options (changing the values in the useState change the default values for the swap options)
-    const [tokenOne, setTokenOne] = useState(tokenList[0]);
-    const [tokenTwo, setTokenTwo] = useState(tokenList[1]);
+    const [tokenOne, setTokenOne] = useState<TokenData>(tokenList[0]);
+    const [tokenTwo, setTokenTwo] = useState<TokenData>(tokenList[1]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [changeToken, setChangeToken] = useState<number>(1);
     //for API calling
@@ -127,12 +129,6 @@ const Swap: FC<SwapProps> = ({ }) => {
                 ratio: responseOne.raw.usdPrice / responseTwo.raw.usdPrice,
             }
 
-            // const res = await axios.get(`/api/tokenPrice`, {
-            //     params: { addressOne: one, addressTwo: two }
-            // })
-
-            // console.log(res, 'RESSS')
-
             setPrices(usdPrices)
 
         } catch (error) {
@@ -163,7 +159,6 @@ const Swap: FC<SwapProps> = ({ }) => {
         setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
 
         setTxDetails(tx.data.tx);
-
     }
 
 
@@ -247,7 +242,7 @@ const Swap: FC<SwapProps> = ({ }) => {
                                 key={index}
                                 onClick={() => modifyToken(index)}
                             >
-                                <Image src={oneToken.img} alt={oneToken.ticker} height={40} width={40} className="h-[40px] w-[40px]" />
+                                <Image src={oneToken.img} alt={oneToken.ticker} height={40} width={40} />
                                 <div>
                                     <div className="ml-2 text-sm font-medium">{oneToken.name}</div>
                                     <div className="ml-2 text-xs font-light text-[#51596f]">{oneToken.ticker}</div>
@@ -290,14 +285,14 @@ const Swap: FC<SwapProps> = ({ }) => {
 
                     <div className="absolute min-w-[20px] h-[30px] bg-[#3a4157] top-9 right-2 rounded-full flex justify-start items-center gap-1 font-bold text-[17px] pr-2 hover:cursor-pointer text-zinc-300"
                         onClick={() => openModal(1)}>
-                        <Image src={tokenOne.img} alt="assetOneLogo" height={14} width={23} className="h-[22px] ml-1" />
+                        <Image src={tokenOne.img} alt="assetOneLogo" height={14} width={23} className="ml-1" />
                         {tokenOne.ticker}
                         <ChevronDown />
                     </div>
 
                     <div className="absolute min-w-[20px] h-[30px] bg-[#3a4157] top-[131px] right-2 rounded-full flex justify-start items-center gap-1 font-bold text-[17px] pr-2 hover:cursor-pointer text-zinc-300"
                         onClick={() => openModal(2)}>
-                        <Image src={tokenTwo.img} alt="assetOneLogo" height={14} width={23} className="h-[22px] ml-1" />
+                        <Image src={tokenTwo.img} alt="assetTwoLogo" height={14} width={23} className="ml-1" />
                         {tokenTwo.ticker}
                         <ChevronDown />
                     </div>
