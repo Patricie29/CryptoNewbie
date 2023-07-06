@@ -12,8 +12,8 @@ const HomePage: FC<HomeProps> = ({ }) => {
         {/* <!--Main--> */}
         <div className="container pt-10 md:pt-10 pb-10 mx-auto flex flex-wrap lg:flex-nowrap flex-col md:flex-row items-center justify-between text-slate-900 dark:text-zinc-300">
             {/* <!--Left side--> */}
-            <div className="flex mt-5 lg:mt-0 flex-col lg:w-3/5 justify-center lg:items-start overflow-y-hidden neon-writing font-unbounded">
-                <h1 className="text-[25px] sm:text-[35px] md:text-[45px] lg:text-[37px] text-center pt-3 lg:pt-0 mb-10 sm:pl-4 opacity-90 lg:text-left text-[#fff]">
+            <div className="flex mt-5 lg:mt-0 flex-col lg:w-3/5 justify-center lg:items-start overflow-y-hidden font-unbounded">
+                <h1 className="text-[25px] sm:text-[35px] md:text-[45px] lg:text-[37px] text-center pt-3 lg:pt-0 mb-10 sm:pl-4 opacity-90 lg:text-left text-[#fff] neon-writing">
                     <span className='text-xl sm:text-3xl'>THE UNIVERSE OF</span> CRYPTOCURRENCY
                 </h1>
                 <span className='text-center lg:text-base md:pl-5 md:mt-5 mb-14 lg:mb-10'>Discover - Learn - Secure</span>
