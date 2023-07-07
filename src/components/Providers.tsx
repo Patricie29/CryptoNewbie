@@ -87,15 +87,13 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
                 accentColorForeground: 'white',
                 fontStack: 'system'
             })}>
-                <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-                    <CoinmarketProvider>
-                        <MessagesProvider>
+                <CoinmarketProvider>
+                    <MessagesProvider>
 
-                            {mounted && children}
+                        {mounted && children}
 
-                        </MessagesProvider>
-                    </CoinmarketProvider>
-                </ThemeProvider>
+                    </MessagesProvider>
+                </CoinmarketProvider>
             </RainbowKitProvider>
         </WagmiConfig>
     </QueryClientProvider>

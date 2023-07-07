@@ -22,7 +22,7 @@ const Card: FC<CardData> = ({ symbol, name, image, currentPrice, priceChange, ma
     }
 
 
-    return <tr onClick={() => viewCoinDetails(id)} className='cursor-pointer hover:bg-gray-400 dark:hover:bg-slate-800 transition-colors'>
+    return <tr onClick={() => viewCoinDetails(id)} className='cursor-pointer hover:bg-slate-800 transition-colors'>
         <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap">{marketRank}</td>
         <td className="px-3 py-3 sm:px-6 sm:py-4 whitespace-nowrap text-left"> <Pair name={name} image={image} symbol={symbol} />
         </td>
