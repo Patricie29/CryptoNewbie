@@ -66,8 +66,8 @@ const page: FC = ({ }) => {
                 <div className='py-1 mb-5'>
                     <header className='flex items-baseline'>
                         <Image src={BitcoinImg} width={40} height={5} alt='' className='' />
-                        <h5 className=" mb-1 text-2xl font-extrabold leading-none tracking-tight text-[#f7931a] md:text-2xl lg:text-3xl dark:text-[#f7931a] border-l-4 border-transparent md:pl-1">Bitcoin</h5>
-                        <span className='text-sm italic ml-2  text-[#f7931a] dark:text-[#f7931a]'>( btc )</span>
+                        <h5 className=" mb-1 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl  text-[#f7931a] border-l-4 border-transparent md:pl-1">Bitcoin</h5>
+                        <span className='text-sm italic ml-2 text-[#f7931a]'>( btc )</span>
                     </header>
                     <p>
                         Bitcoin, created in 2009 by the anonymous Satoshi Nakamoto, is a decentralized digital currency operating on blockchain technology. It offers numerous benefits due to its independent nature. Unlike traditional currencies controlled by central banks, Bitcoin is free from censorship, manipulation, and government interference. The blockchain, a distributed ledger, ensures transparency and security by recording all transactions.
@@ -159,7 +159,7 @@ const page: FC = ({ }) => {
 
         {/* <!--Tags --> */}
         <div className="text-base md:text-sm text-gray-500 px-4 py-6" >
-            <Link href="/" className="text-base md:text-sm no-underline hover:no-underline rounded-lg py-3 px-6 bg-green-500 border-none hover:text-zinc-100 hover:bg-green-600 ">Go Back</Link>
+            <Link href="/" className="text-base md:text-sm text-slate-900 no-underline hover:no-underline rounded-lg py-3 px-6 bg-green-500 border-none hover:text-zinc-100 hover:bg-green-600">Home Page</Link>
         </div >
 
 

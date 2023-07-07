@@ -166,7 +166,7 @@ const page = ({ }) => {
                     </div>
                     {/* BitBox */}
 
-                    <div className="w-50 max-w-sm border border-gray-300 rounded-lg shadow bg-gray-800 dark:border-gray-700">
+                    <div className="w-50 max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
                         <a href="https://bitbox.swiss/bitbox02/" target='_blank'>
                             <Image className="p-8 rounded-t-lg w-lg" src={BitBox} alt="product image" />
                         </a>
@@ -184,7 +184,7 @@ const page = ({ }) => {
                             </div>
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <span className='font-thin text-xs pt-2 mr-1'>from</span><span className="text-2xl font-bold text-gray-900 dark:text-white">$148</span>
+                                    <span className='font-thin text-xs pt-2 mr-1'>from</span><span className="text-2xl font-bold text-white">$148</span>
                                 </div>
                                 <a href="https://shop.ledger.com/products/ledger-nano-x" target='_blank' className="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-10 py-2 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">View</a>
                             </div>
@@ -192,7 +192,7 @@ const page = ({ }) => {
                     </div>
 
                     {/* Trezor One*/}
-                    <div className="w-50 max-w-sm border border-gray-300 rounded-lg shadow bg-gray-800 dark:border-gray-700">
+                    <div className="w-50 max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
                         <a href="https://trezor.io/trezor-model-one" target='_blank'>
                             <Image className="rounded-t-lg" src={TrezorOne} alt="product image" />
                         </a>
@@ -225,7 +225,7 @@ const page = ({ }) => {
 
             {/* <!--Tags --> */}
             <div className="text-base md:text-sm text-gray-500 px-4 py-6" >
-                <Link href="/" className="text-base md:text-sm text-slate-900 no-underline hover:no-underline rounded-lg py-3 px-6 bg-green-500 border-none hover:text-zinc-100 hover:bg-green-600">Go Back</Link>
+                <Link href="/" className="text-base md:text-sm text-slate-900 no-underline hover:no-underline rounded-lg py-3 px-6 bg-green-500 border-none hover:text-zinc-100 hover:bg-green-600">Home Page</Link>
             </div >
         </div>
 
