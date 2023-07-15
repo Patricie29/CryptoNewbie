@@ -1,6 +1,7 @@
 import { CardData, ResponseData, ResponseDetailChartData, ResponseDetailsData, ResponseTrendingData, TrendingData } from "@/libraries/coinTypes";
 import { notFound } from "next/navigation";
 import { createContext, useState, ReactNode } from "react";
+import { toast } from "react-hot-toast";
 
 
 export const CoinmarketContext = createContext<{
@@ -111,14 +112,14 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             setCoins((prevCoins) => [...prevCoins, ...newData])
 
             if (!res.ok) {
-                throw new Error(`FAILED ${res.status}`)
+                throw new Error()
             }
+            setIsLoading(false)
+
             return newData
 
         } catch (error) {
-            return new Response('Invalid request.', { status: 400 })
-        } finally {
-            setIsLoading(false)
+            toast.error('Something went wrong, please try again.')
         }
     }
 
@@ -136,7 +137,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             const resData: ResponseDetailsData = await res.json();
 
             if (!res.ok) {
-                throw new Error(`FAILED ${res.status}`)
+                throw new Error()
             }
 
             setDetailCoin(resData)
@@ -145,8 +146,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
 
         } catch (e) {
             notFound()
-        } finally {
-            setIsLoading(false)
         }
     }
 
@@ -165,7 +164,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             const resData = await response.json();
 
             if (!response.ok) {
-                throw new Error(`FAILED ${response.status}`)
+                throw new Error()
             }
 
             const data: ResponseDetailChartData[] = resData.prices.map((oneValue: any) => ({
@@ -173,13 +172,12 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             }))
 
 
-
             setChartData(data)
 
             return data
 
         } catch (e) {
-            throw new Error('Something went wrong')
+            toast.error('Something went wrong, please try again.')
         }
     }
 
@@ -192,10 +190,10 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
                         'accept': 'application/json'
                     }
                 }
-            );
+            )
 
             if (!response.ok) {
-                throw new Error(`FAILED ${response.status}`);
+                throw new Error();
             }
             const resData: ResponseTrendingData = await response.json();
 
@@ -215,7 +213,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             return top5Coins;
 
         } catch (error) {
-            throw new Error('Something went wrong')
+            toast.error('Something went wrong, please try again.')
         }
     }
 

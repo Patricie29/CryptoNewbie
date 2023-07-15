@@ -1,4 +1,4 @@
-import Swap from '@/components/Layout/Swap'
+import Swap from '@/components/Swap/Swap'
 import { FC } from 'react'
 
 interface pageProps {

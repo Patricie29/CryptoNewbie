@@ -18,7 +18,7 @@ const PriceChange7d: FC<PriceChange7dProps> = ({ priceChange7d }) => {
         <span className='pl-4'>
             {priceChange7d.toFixed(2)}%
         </span>
-    </div>;
-};
+    </div>
+}
 
 export default PriceChange7d;

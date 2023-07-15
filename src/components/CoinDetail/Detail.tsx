@@ -3,7 +3,7 @@ import { cn, currencyFormat, numbersFormat } from '@/libraries/utilities'
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import Image from 'next/image'
 import { FC, useContext } from 'react'
-import Swap from '../Layout/Swap'
+import Swap from '../Swap/Swap'
 
 interface DetailProps {
 }
