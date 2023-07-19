@@ -3,9 +3,8 @@
 import { CoinmarketProvider } from '@/context/cryptoCtx'
 import { MessagesProvider } from '@/context/messages'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { ThemeProvider } from 'next-themes'
 import Moralis from "moralis";
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useEffect, useState } from 'react'
 import {
     RainbowKitProvider,
     getDefaultWallets,
@@ -76,8 +75,8 @@ interface ProvidersProps {
 
 const Providers: FC<ProvidersProps> = ({ children }) => {
     const queryClient = new QueryClient()
-    const [mounted, setMounted] = React.useState(false);
-    React.useEffect(() => setMounted(true), []);
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
 
 
     return <QueryClientProvider client={queryClient}>

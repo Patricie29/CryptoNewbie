@@ -23,7 +23,6 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
     // creating ref for textarea, so after submitting we can automatically put the focus back on the input and user can keep writing without having to click on the input
     const textareaRef = useRef<null | HTMLTextAreaElement>(null)
 
-    // what is being handled for us is - loading states, error states etc
     const { mutate: sendMessage, isLoading } = useMutation({
         mutationFn: async (message: Message) => {
 
@@ -35,28 +34,24 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
                 body: JSON.stringify({ messages: [message] })
             })
 
-            // this line runs if there is error and it will redirect us down where we handle the error
             if (!response.ok) {
-                throw new Error
+                throw new Error()
             }
 
             return response.body
         },
-        // wwe want to put the messages into a state
+        // we want to put the messages into a state
         onMutate(message) {
             addMessage(message)
         },
-
-
-        // now I have to get a readable stream from the server
+        // I have to get a readable stream from the server
         onSuccess: async (stream) => {
             if (!stream) {
                 throw new Error('No stream found')
             }
 
-            //now I need to construct the bot message
+            //constructing the bot message
             const id = nanoid()
-
             const responseBotMessage: Message = {
                 id: id,
                 isUserMessage: false,

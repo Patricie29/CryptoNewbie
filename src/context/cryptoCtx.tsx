@@ -92,7 +92,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
 
             // get only data we need
             const newData = resData.map((data: ResponseData) => {
-                // here we deconstruct from the recieved data what we actual want to display
+                // here we descracture from the recieved data what we actual want to display
                 const { symbol, id, name, image, current_price, market_cap, price_change_percentage_24h, market_cap_rank, sparkline_in_7d: { price }, price_change_percentage_7d_in_currency, price_change_percentage_1h_in_currency } = data;
                 return {
                     symbol,

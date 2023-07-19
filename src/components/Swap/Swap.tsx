@@ -5,31 +5,25 @@ import React, { useState, useEffect } from "react";
 import { Input, Popover, Radio, Modal, message, RadioChangeEvent } from "antd";
 import tokenList from '../../helpers/tokens/token-list.json'
 import axios from "axios";
-import { useSendTransaction, useWaitForTransaction, useAccount, usePrepareSendTransaction } from "wagmi";
+import { useSendTransaction, useWaitForTransaction, useAccount } from "wagmi";
 import Image from 'next/image';
 import { ArrowDown, ChevronDown, Settings } from 'lucide-react';
 import Moralis from 'moralis';
 import { TokenData } from '@/libraries/tokenTypes';
 
 
-interface SwapProps {
-
-}
-
-
-
-const Swap: FC<SwapProps> = ({ }) => {
+const Swap: FC = ({ }) => {
 
     const [slippage, setSlippage] = useState<number>(2.5)
     // useMessage hook from antd to display our pending transaction message
     const [messageApi, contextHolder] = message.useMessage();
-    const [tokenOneAmount, setTokenOneAmount] = useState<any>(null);
-    const [tokenTwoAmount, setTokenTwoAmount] = useState<any>(null);
+    const [tokenOneAmount, setTokenOneAmount] = useState<any>(null)
+    const [tokenTwoAmount, setTokenTwoAmount] = useState<any>(null)
     // our token options (changing the values in the useState change the default values for the swap options)
-    const [tokenOne, setTokenOne] = useState<TokenData>(tokenList[0]);
-    const [tokenTwo, setTokenTwo] = useState<TokenData>(tokenList[1]);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [changeToken, setChangeToken] = useState<number>(1);
+    const [tokenOne, setTokenOne] = useState<TokenData>(tokenList[0])
+    const [tokenTwo, setTokenTwo] = useState<TokenData>(tokenList[1])
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [changeToken, setChangeToken] = useState<number>(1)
     //for API calling
     const [prices, setPrices] = useState<any>(null)
     //transaction details
@@ -38,7 +32,6 @@ const Swap: FC<SwapProps> = ({ }) => {
         data: null,
         value: 1,
     })
-
 
     // this is coming from wagmi
     // getting address from the connected user
@@ -65,7 +58,7 @@ const Swap: FC<SwapProps> = ({ }) => {
         setTokenOneAmount(event.target.value)
 
         if (event.target.value && prices) {
-            const tokenOneAmount = parseFloat(event.target.value); // Convert to a numeric type
+            const tokenOneAmount = parseFloat(event.target.value) // Convert to a numeric type
             setTokenTwoAmount((tokenOneAmount * prices.ratio).toFixed(2))
         } else {
             setTokenTwoAmount(null);
@@ -112,7 +105,7 @@ const Swap: FC<SwapProps> = ({ }) => {
     }
 
 
-    // //fetching current prices of tokens from our API
+    // fetching current prices of tokens from API
     const fetchPrices = async (one: string, two: string) => {
         try {
 
@@ -141,7 +134,7 @@ const Swap: FC<SwapProps> = ({ }) => {
 
         const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
 
-        // we have to allow the token to be swapped first if it hasnt been allowed before
+        // we have to allow the token to be swapped first if it hasn't been allowed before
         if (allowance.data.allowance === '0') {
             const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
             setTxDetails(approve.data)
@@ -168,7 +161,7 @@ const Swap: FC<SwapProps> = ({ }) => {
 
 
     useEffect(() => {
-        if (txDetails && isConnected) {
+        if (txDetails.to && isConnected) {
             sendTransaction()
         }
     }, [txDetails])
@@ -220,8 +213,7 @@ const Swap: FC<SwapProps> = ({ }) => {
                 </Radio.Group>
             </div>
         </>
-    );
-
+    )
 
 
     return <div className='min-h-[100vh]'>
