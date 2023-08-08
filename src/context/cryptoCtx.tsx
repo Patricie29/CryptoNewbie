@@ -154,7 +154,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     const getChartData = async (id: string) => {
 
         try {
-            const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365&interval=monthly`, {
+            const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=90&interval=daily`, {
                 method: 'GET',
                 headers: {
                     'accept': 'application/json'
@@ -162,6 +162,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
             })
 
             const resData = await response.json();
+            console.log(resData, 'response')
 
             if (!response.ok) {
                 throw new Error()
