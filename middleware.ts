@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { rateLimiter } from '@/libraries/rate-limiter'
 
-// This function can be marked `async` if using `await` inside
 export const middleware = async (req: NextRequest) => {
 
     const ip = req.ip ?? '127.0.0.1'  //this is our ip - local host
@@ -19,6 +18,7 @@ export const middleware = async (req: NextRequest) => {
         return NextResponse.next()
 
     } catch (error) {
+        console.log(error)
         return new NextResponse(
             'Sorry, something went wrong processing your message. Please try again later.'
         )
