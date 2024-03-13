@@ -9,7 +9,6 @@ export interface ChatGPTMessage {
     content: string
 }
 
-
 export interface OpenAIStreamPayload {
     model: string,
     messages: ChatGPTMessage[],
@@ -22,15 +21,13 @@ export interface OpenAIStreamPayload {
     n: number
 }
 
-
 // this is the main function that sends & recieves messages from open AI
-
 export async function OpenAIStream(payload: OpenAIStreamPayload) {
 
     const encoder = new TextEncoder() //this encodes text
     const decoder = new TextDecoder() //this is what we will use to decode whatever it's coming from the open AI stream
 
-    let counter = 0
+    let counter = 0 //to keep track of the number of messages that have been processed from the OpenAI stream
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', { //again this is from open ai documentation
         method: 'POST',
@@ -54,16 +51,15 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
                     // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
                     if (data === '[DONE]') { //when the event is done we get a specific syntax back which is [DONE]
                         controller.close()  // if this is done then we want to close this whole readable stream and this is how we do it
-                        return  // then you need to return to stop any further excecution of the code 
+                        return  // then you need to return to stop any further execution of the code 
                     }
 
-                    //if the data is not done and there is an actual readable stream  we want to read - we have to wrapt it in try catch as there might happen error along the way and we want to handle that
+                    //if the data is not done and there is an actual readable stream  we want to read - we have to wrap it in try catch as there might happen error along the way and we want to handle that
                     try {
                         // here is how we will handle the data
                         const json = JSON.parse(data) // first you want to parse the data we are getting
                         // now we will convert the data into a regular string
                         const text = json.choices[0].delta?.content || ''  // we have to put empty string, in case we get undefined which is very possible. this is just the syntax for turning the data into regular string
-
 
                         // if the text is a prefixed character (for ex. a new line) then we do not want to do anything
                         if (counter < 2 && (text.match(/\n/) || []).length) {  //text.match(/\n/)  this mean a new line
@@ -84,12 +80,12 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
 
             const parser = createParser(onParse)
 
-            // the response.body we get back from the fetch request is going to contain a  readable stream (because we set it to be true in the payload) and we can split it in certain chunks
+            // the response.body we get back from the fetch request is going to contain a readable stream (because we set it to be true in the payload) and we can split it in certain chunks
             for await (const chunk of response.body as any) {
                 // now we can feed out parser with it
                 parser.feed(decoder.decode(chunk))
             }
-
+            console.log(response, 'response')
         }
     })
 

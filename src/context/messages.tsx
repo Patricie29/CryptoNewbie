@@ -25,12 +25,10 @@ export const MessageContext = createContext<{
 
 export const MessagesProvider = ({ children }: { children: ReactNode }) => {
 
-    // so here you now have to set the values and the logic you want hte function do - this is what we set up in the createContext() - here you are just saying the values and passing them to the provider as values
+    // so here you now have to set the values and the logic you want the function to do
 
-    //5.
     const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
 
-    //1.
     const [messages, setMessages] = useState<Message[]>([
         // this is what is gonna show up as the first message in the chat as default
         {
@@ -40,18 +38,16 @@ export const MessagesProvider = ({ children }: { children: ReactNode }) => {
         }
     ])
 
-    //2.
     const addMessage = (message: Message) => {
         setMessages((prev) => [...prev, message])  //you just want to push the message into our state and add them to the previous ones, so we do not override them
     }
-    //3.
+
     const removeMessage = (id: string) => {
         setMessages((prev) => prev.filter((oneMsg) => oneMsg.id !== id))
     }
 
-    //4. 
     const updateMessage = (id: string, updateFn: (prevText: string) => string) => {
-        // updateFn is a callback function, and the reason we chose a callback to pass in the previous text, is because then we can actually push the answer that we get back from open AI into an existing string instead of having it sepereted into seperate chunks (cause that is how you get the data back)
+        // updateFn is a callback function, and the reason we chose a callback to pass in the previous text, is because then we can actually push the answer that we get back from open AI into an existing string instead of having it seperated into seperate chunks (cause that is how you get the data back)
         setMessages((prev) => prev.map((oneMsg) => {
             if (oneMsg.id === id) {  //if the oneMsg is same as the one we get, then you wanna update this specific message text
                 // the return value is what actually ends up in the final state - setMessages()
@@ -65,7 +61,6 @@ export const MessagesProvider = ({ children }: { children: ReactNode }) => {
 
 
     return <MessageContext.Provider value={{
-        //1       //2          //3             //4              //5                   //5
         messages, addMessage, removeMessage, updateMessage, setIsMessageUpdating, isMessageUpdating
     }}>
         {children}

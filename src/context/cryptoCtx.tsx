@@ -92,7 +92,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
 
             // get only data we need
             const newData = resData.map((data: ResponseData) => {
-                // here we descracture from the recieved data what we actual want to display
+                // here we destructure from the recieved data what we actually want to display
                 const { symbol, id, name, image, current_price, market_cap, price_change_percentage_24h, market_cap_rank, sparkline_in_7d: { price }, price_change_percentage_7d_in_currency, price_change_percentage_1h_in_currency } = data;
                 return {
                     symbol,
@@ -123,7 +123,7 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
         }
     }
 
-    // getting details for eahc of our coins - we had to use different route to get information about each coin
+    // getting details for each of our coins - we have to use different route to get information about each coin
     const getCoinsDetails = async (coinId: string) => {
 
         try {
@@ -185,12 +185,11 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
     // getting top 5 trending coins
     const getTrendingData = async () => {
         try {
-            const response = await fetch('https://api.coingecko.com/api/v3/search/trending',
-                {
-                    headers: {
-                        'accept': 'application/json'
-                    }
+            const response = await fetch('https://api.coingecko.com/api/v3/search/trending', {
+                headers: {
+                    'accept': 'application/json'
                 }
+            }
             )
 
             if (!response.ok) {
@@ -208,7 +207,6 @@ export const CoinmarketProvider = ({ children }: { children: ReactNode }) => {
                 };
             });
             const top5Coins = data.slice(0, 5); // Get the first 5 coins
-
 
             setTrendingData(top5Coins);
             return top5Coins;

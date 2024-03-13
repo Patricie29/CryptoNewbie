@@ -62,7 +62,6 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
             addMessage(responseBotMessage)
             setIsMessageUpdating(true)  // to display the loading state
 
-
             // now lets decode the stream 
             const reader = stream.getReader()
             const decoder = new TextDecoder()

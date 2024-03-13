@@ -9,8 +9,6 @@ interface ChatMessagesProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const ChatMessages: FC<ChatMessagesProps> = ({ className, ...props }) => {
-
-    //this is how you get your messages out of the useContext
     const { messages } = useContext(MessageContext)
 
     // now you need to reverse them, so the newest one is at the bottom - you need to use flex-col-reverse class as well and thanks to that we will be at the bottom of the chat by default as well

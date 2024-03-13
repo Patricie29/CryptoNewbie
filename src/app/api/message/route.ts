@@ -15,7 +15,6 @@ export async function POST(req: Request) {
     const readyToGoMessages: ChatGPTMessage[] = parsedMessages.map((oneMessage) => ({
         role: oneMessage.isUserMessage ? 'user' : 'system', //so either this is user message or it's coming from the system
         content: oneMessage.text
-
     }))
 
     readyToGoMessages.unshift({

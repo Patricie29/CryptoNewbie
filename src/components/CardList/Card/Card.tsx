@@ -14,13 +14,11 @@ import PriceChange1h from './PriceChange1h'
 
 const Card: FC<CardData> = ({ symbol, name, image, currentPrice, priceChange, marketRank, marketCap, chartData, priceChange7d, id, priceChange1h }) => {
 
-
     const router = useRouter()
 
     const viewCoinDetails = (id: string) => {
         router.push(`/currencies/info?id=${id}`)
     }
-
 
     return <tr onClick={() => viewCoinDetails(id)} className='cursor-pointer hover:bg-slate-800 transition-colors'>
         <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap">{marketRank}</td>

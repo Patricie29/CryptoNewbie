@@ -3,12 +3,12 @@
 import { FC } from 'react'
 import React, { useState, useEffect } from "react";
 import { Input, Popover, Radio, Modal, message, RadioChangeEvent } from "antd";
-import tokenList from '../../helpers/tokens/token-list.json'
 import axios from "axios";
 import { useSendTransaction, useWaitForTransaction, useAccount } from "wagmi";
+import Moralis from 'moralis';
 import Image from 'next/image';
 import { ArrowDown, ChevronDown, Settings } from 'lucide-react';
-import Moralis from 'moralis';
+import tokenList from '../../helpers/tokens/token-list.json'
 import { TokenData } from '@/libraries/tokenTypes';
 
 
@@ -89,7 +89,7 @@ const Swap: FC = ({ }) => {
 
     // changing token in the modal
     const modifyToken = (index: number) => {
-        // we have to do the same as when we switch tokens and then send a new request to fetchPrices with the modifies addresses
+        // we have to do the same as when we switch tokens and then send a new request to fetchPrices with the modified addresses
         setPrices(null)
         setTokenOneAmount(null)
         setTokenTwoAmount(null)
@@ -108,7 +108,6 @@ const Swap: FC = ({ }) => {
     // fetching current prices of tokens from API
     const fetchPrices = async (one: string, two: string) => {
         try {
-
             const responseOne = await Moralis.EvmApi.token.getTokenPrice({
                 address: one,
             })
@@ -132,26 +131,33 @@ const Swap: FC = ({ }) => {
     // function for swap and getting the transaction details
     const fetchDexSwap = async () => {
 
-        const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+        try {
+            const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
 
-        // we have to allow the token to be swapped first if it hasn't been allowed before
-        if (allowance.data.allowance === '0') {
-            const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
-            setTxDetails(approve.data)
-            console.log('not approved', approve.data)
-            return
+            // we have to allow the token to be swapped first if it hasn't been allowed before
+            if (allowance.data.allowance === '0') {
+                const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
+                setTxDetails(approve.data)
+                console.log('not approved', approve.data)
+                return
+            }
+
+            // with this api we make the actual swap
+            const tx = await axios.get(
+                `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+            )
+
+            // with this we show the user exactly how many tokens it will be swapped for, because Moralis and 1inch can have a bit different price of tokens
+            let decimals = Number(`1E${tokenTwo.decimals}`)
+            setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+
+            setTxDetails(tx.data.tx);
+
+        } catch (error) {
+            console.log(error)
+
         }
 
-        // with this api we make the actual swap
-        const tx = await axios.get(
-            `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
-        )
-
-        // with this we show the user exactly how many tokens it will be swapped for, because Moralis and 1inch can have a bit different price of tokens
-        let decimals = Number(`1E${tokenTwo.decimals}`)
-        setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-
-        setTxDetails(tx.data.tx);
     }
 
 
@@ -194,7 +200,7 @@ const Swap: FC = ({ }) => {
             messageApi.open({
                 type: 'error',
                 content: 'Transaction Failed',
-                duration: 1.50,
+                duration: 1.5,
             })
         }
 
